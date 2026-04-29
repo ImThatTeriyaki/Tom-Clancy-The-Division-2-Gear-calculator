@@ -2,295 +2,129 @@
   DIVISION 2 GEAR CALCULATOR — CHANGELOG
 ================================================================================
 
-v1.7.4 — Data Accuracy, Filtering & Talent System Update
+v1.7.9 — Saint Theme, Icon Infrastructure & QoL Fixes
 Date: April 2026
 
 --------------------------------------------------------------------------------
-  BUG FIXES — WEAPON DATA
+  SAINT THEME — NEW DARK GOTHIC THEME
 --------------------------------------------------------------------------------
 
-  - Punch Drunk named mask Headshot Damage corrected: 10% -> 20%
-  - Fox's Prayer kneepads Damage to Armor corrected: 12% -> 8%
-  - Contractor's Gloves Damage to Armor corrected: 12% -> 8%
-  - Bighorn Headshot Damage corrected: 65% -> 55%
-  - St. Elmo's Engine Scope stat corrected: critDamage -> critChance (15%)
-  - Strega Muzzle stat corrected: critChance -> critDamage (5%)
-  - Lady Death Underbarrel stat corrected: weaponHandling 500% -> meleeDamage 500%
-  - Bluescreen Muzzle Rate of Fire corrected: 15% -> 20%
-  - Bullet King Magazine corrected: removed fake +9 mag, noted as Man of Holding
-  - Regulus Headshot Damage corrected: 125% -> 100%
-  - Regulus base critChance and critDamage removed (correct is 0)
-  - All 315 weapon entries: base critChance and critDamage set to 0
-    (these stats only come from attributes and attachments, not the weapon base)
-  - HK GR9: removed all attachment slots (built-in scope, no mods)
-  - Sheriff: corrected to Named quality, no attachment slots, fixed stats built in
-  - Overlord Scope stat corrected: critChance -> critDamage, Magazine slot added
-  - Overlord exotic shotgun: added Magazine slot to supportedSlots (was missing
-    despite having a fixed exotic magazine mod defined)
-  - Busy Little Bee: added full 4-slot attachment support per game data
-  - Regulus talent renamed from "Regulus (Exotic)" to "Regicide" with accurate
-    description (5m explosion on headshot kill, 400% WD + bleed)
-  - Mosquito defaultTalent corrected to Mosquito Song (was incorrectly Regicide)
-  - Tempest defaultTalent corrected to Restrained (+25% WD for 20s after shield
-    breaks) — was incorrectly mapped to Regicide
+  A new "Saint" theme has been added, selectable from the Themes dropdown.
+  Inspired by the SAINT display typeface by echodesign (2026).
+
+  Visual features:
+  - SAINT display font applied to all headers, card names, section labels,
+    nav tabs, and modal titles
+  - Animated canvas background with multiple layers:
+      * Voronoi stained-glass cells — 60 irregular polygon panes in amber,
+        blood-red, deep violet and near-black with dark lead lines between them
+      * Film grain — 8 pre-baked 256x256 noise tiles cycled randomly each
+        frame (zero per-frame pixel writes for performance)
+      * Vertical scratches — 18-40 randomised light-leak and dark scratches
+        per session
+      * Film burns — warm overexposed blobs at corners and edges
+      * Dust and speck layer — 280-480 random particles and streaks
+      * Rising ember particles — 80 particles weighted toward left side,
+        sparse across full width
+      * Gothic decorative artwork — large cross, ornate medallion, dagger,
+        chain, filigree vine, crack lines, gothic arch, star markers, ghost
+        cross watermark — all drawn as pure canvas paths (no images)
+      * Dense technical annotation overlay — coordinate clusters, Python
+        code blocks, status headers, crosshairs, dashed scan-lines, dot
+        markers matching the editorial aesthetic of the font designs
+      * Animated film grain — pool of 8 unique tiles cycled with random
+        offset each frame, two blend-mode passes (overlay + screen)
+      * Final edge burn — hard corner darkening like old film stock
+  - Monochrome white accent system (replaces orange)
+  - Zero border-radius everywhere (sharp edges throughout)
+  - All pages (Spec, SHD, Compare, Planner, Workbench, Library, Prototype)
+    fully styled with dark semi-transparent surfaces
+  - Tooltips, IO modal, pickers, selects all themed correctly
 
 --------------------------------------------------------------------------------
-  BUG FIXES — SKILL DATA
+  ICON INFRASTRUCTURE
 --------------------------------------------------------------------------------
 
-  - Removed "Shock Turret" from Turret skill variants (does not exist in game)
-  - Removed "Explosive Decoy" from Decoy skill variants (does not exist in game)
-  - Removed "Burn Trap" from Trap skill variants (does not exist in game)
-  - Added "Firewall Shield" to Shield skill variants
+  339 talent and item icons downloaded from the reference spreadsheet and
+  organised into assets/icons/:
+
+    weapon-talents/   — all-weapons/ (23), rifles/ (18), shotguns/ (3),
+                        pistols/ (4)
+    gear-talents/     — 46 icons
+    gearsets/         — 19 icons
+    brandsets/        — 29 icons
+    specializations/  — 3 icons
+    weapons/          — brand logos for base weapons
+    weapons-named-exotic/ — 79 icons organised by weapon type
+    gear-named-exotic/    — 112 icons organised by gear slot
+
+  getIconPath(category, key) helper function added to the tool. Maps all
+  DB talent IDs and item names to their icon file paths. Nothing is
+  displayed yet — infrastructure is in place for future UI integration.
+
+  Lookup maps added:
+    WEAPON_TALENT_ICONS  — all wt_* IDs
+    GEAR_TALENT_ICONS    — all gt_* IDs
+    GEARSET_ICONS        — all gearset names
+    BRAND_ICONS          — all brand names
 
 --------------------------------------------------------------------------------
-  BUG FIXES — GEAR DATA
+  WEAPON DATA FIXES
 --------------------------------------------------------------------------------
 
-  - All kneepads mod slots corrected: 1 -> 0 (kneepads have no mod slot)
-  - Removed weaponDamage, armor, and skillTier from fixedAttributes on all
-    named and exotic items — these are free-choice core attributes, not fixed
-    (affected 44 items)
-  - The Gift backpack: corrected to Named quality (was incorrectly Exotic)
-  - Chill Out mask: corrected brand to Gila Guard, 2 mod slots,
-    +5% Total Armor fixed attribute
-  - Chillout mask (Murakami): confirmed separate item, 0 mod slots
-  - Ferocious Calm: confirmed correctly placed in Chest slot
-  - Investor exotic mask: confirmed no fixed attributes (correct per game)
-  - Removed mod_weapon_damage and mod_crit_damage from gear mods
-    (these do not exist as gear mods in game)
-  - Overdogs gloves: hasTalent corrected to true (was false, hiding talent slot)
+  - "The Lullaby" shotgun: was missing — now added as Exotic shotgun
+  - "The Sheriff" shotgun: was incorrectly Named — corrected to Exotic with
+    proper exotic mods and talent (Autentico)
+  - Cuelebre shotgun: was missing — now present as Named with Perfect Jazz
+    Hands talent
+  - Backup Boomstick: now correctly restricted to Sidearm slot only
 
 --------------------------------------------------------------------------------
-  BUG FIXES — GEAR SET TALENTS
+  GEAR DATA FIXES
 --------------------------------------------------------------------------------
 
-  - Gear set chest and backpack talent dropdowns now show ONLY the set-specific
-    talent for that set (e.g. Striker's Battlegear Chest shows only "Risk
-    Management"; Striker's Backpack shows only "Press the Advantage")
-  - Previous filter was incorrectly showing all generic slot talents alongside
-    set-specific ones — now correctly exclusive for gear set items
-  - Added gearSet field to all existing set-specific chest and backpack talent
-    entries so the talent filter can correctly identify them
-  - Corrected set-specific talent names and assignments:
-      Striker's Battlegear Backpack: "Striker's Gamble" → "Press the Advantage"
-      Tipping Scales Backpack: "Tipping Point" → "Sustainability"
-      Snowball talent: was incorrectly assigned to Striker's, now correctly
-        assigned to Tipping Scales
-      Risk Management: correctly assigned to Striker's Battlegear Chest
-  - Added missing set-specific chest and backpack talents for all gear sets:
-      Breaking Point (Point of no Return / Point of Honor)
-      Cavalier (Overcharging / Safe Charging)
-      Concentrated Company (All for One / One for All)
-      Future Initiative (Tactical Superiority / Advanced Combat Tactics)
-      Heartbreaker (Max BPM / Cold)
-      Hotshot (Endless Hunger / Overwhelming Force)
-      Hunter's Fury (Hivemind / Smart Cooperation)
-      Measured Assembly (Target Rich Environment / Critical Measures)
-      Negotiator's Dilemma (Parabellum Rounds / Trauma Specialist)
-      Ortiz: Exuro (Chain Combustion / Heatstroke)
-      Refactor (Best Buds / Complete Uptime)
-      Rigger (Press the Advantage / Risk Management)
-      System Corruption (Specialized Destruction / Signature Moves)
-      Tip of the Spear (Sustainability / Snowball)
-      True Patriot (Waving the Flag / Stars and Stripes)
-      Virtuoso (Fortissimo / Accelerando)
-  - Fix applies to all themes: Desktop, Liquid Glass, and Cozy
+  - "Chill Out" mask (Gila Guard): duplicate entry removed
+  - "Chillout" mask (Murakami Industries): corrected to 1 mod slot and
+    1 editable attribute (was showing 0 attributes)
+  - Providence Defense Named Mask: confirmed present and displaying correctly
+  - Airaldi Holdings Named Mask: confirmed present and displaying correctly
 
 --------------------------------------------------------------------------------
-  BUG FIXES — GEAR SET BONUSES
+  ATTRIBUTE LIMIT FIXES
 --------------------------------------------------------------------------------
 
-  - Striker's Battlegear bonuses corrected:
-      2pc = 15% Weapon Handling
-      3pc = 15% Rate of Fire
-      4pc = 25% Weapon Damage (added)
-  - Tipping Scales bonuses corrected:
-      2pc = 30% Magazine Size
-      3pc = 30% LMG Damage
-  - Added 4-piece bonuses to all gear sets:
-      Aces & Eights, Aegis, Breaking Point, Cavalier, Concentrated Company,
-      Eclipse Protocol, Foundry Bulwark, Future Initiative, Hard Wired,
-      Heartbreaker, Hotshot, Hunter's Fury, Measured Assembly,
-      Negotiator's Dilemma, Ongoing Directive, Rigger, System Corruption,
-      Tip of the Spear, Tipping Scales, True Patriot, Umbra Initiative,
-      Virtuoso, Ortiz: Exuro, Refactor
+  Named and Exotic items now correctly enforce attribute caps across all
+  three rendering paths (CozyUI, Classic Loadout, event listeners):
+
+  - Named gloves: 1 fixed + 1 editable = 2 total (was allowing 2 editable)
+  - Named holsters with no fixed attributes: correctly limited to 1 editable
+  - Chill Out mask: correctly limited to 1 editable attribute
+  - Root fix: all three paths now use namedExoticMax = item.maxAttributes ?? 2
 
 --------------------------------------------------------------------------------
-  BUG FIXES — LOGIC & MATH
+  TALENT POOL FIXES
 --------------------------------------------------------------------------------
 
-  - Resourceful talent now correctly adds +1 to all active set and brand
-    piece counts when equipped on the NinjaBike Messenger Backpack
-  - Cozy theme weapon picker: fixed empty weapon list caused by grouping
-    weapons by raw type codes (AR, SMG) instead of display names
-  - Fixed 135 corrupted replacement characters (U+FFFD) throughout the file
-    that were causing visible corruption in dropdowns and labels
-  - Base armor defaults corrected for all slots:
-      Mask: 80,000 | Gloves: 80,000 | Kneepads: 80,000
-      Backpack: 131,000 | Chest: 157,000 | Holster: 80,000
-  - Core attribute auto-apply: Blue core = 170,000 armor, Red core = 15% WD
-  - Effective RPM now displays in the stat panel and updates when rate of
-    fire bonuses are applied from attachments or talents
-  - Capacitor exotic AR: Skill Tier now correctly scales weapon damage bonus.
-    Each Skill Tier grants +5% weapon damage (up to +30% at Tier 6), replacing
-    the previous flat +30% that was always applied regardless of Skill Tier
-  - Coyote's Mask Pack Instinct talent: added range stage selector with three
-    stages — 0-15m (+25% CHD), 15-25m (+10% CHC +10% CHD), 25m+ (+25% CHC).
-    Selecting a stage updates the crit chance and crit damage modifiers used
-    in the DPS calculation accordingly
+  - Exotic weapon talents no longer appear in the general talent dropdown
+    for High-End weapons
+  - Augments no longer appear in the Talent dropdown for Prototype gear
 
 --------------------------------------------------------------------------------
-  BUG FIXES — UI
+  AUGMENTS — SEPARATED FROM TALENTS
 --------------------------------------------------------------------------------
 
-  - Fixed "?" appearing next to gear category group headers (Gear Sets, Brand
-    Sets, Named & Exotic, Prototype, Generic) in the item search dropdown —
-    now correctly shows ▶ arrow matching the weapon picker
-  - Fixed "?" appearing next to weapon type group headers (Assault Rifle, SMG,
-    LMG, Rifle, Marksman Rifle, Shotgun) in the weapon search dropdown
-  - Cozy theme active set bonus panel now shows all active bonus tiers
-    (2pc, 3pc, and 4pc) as separate rows instead of only the highest tier
+  Prototype gear items now show two distinct sections:
+  - Talent: actual gear talents valid for that slot
+  - Augment: separate dropdown (Quantum, Echo, Atomize, Amalgam, Trapper,
+    Entropy, Anomaly, Paradox, Synesthesia)
+
+  Both CozyUI and Classic renderer updated.
 
 --------------------------------------------------------------------------------
-  NEW CONTENT ADDED
+  VERSION
 --------------------------------------------------------------------------------
 
-  Weapons:
-  - Bighorn exotic MMR (semi-auto and full-auto modes, 55% headshot damage)
-  - Lullaby exotic shotgun (SPAS-12, Sandman talent)
-  - Sweet Dreams exotic shotgun (SPAS-12, Sandman talent — Outcast variant)
-  - Overlord exotic shotgun (KSG, Capitulate talent)
-  - Diamondback exotic rifle (1886, Agonizing Bite talent)
-  - Doctor Home exotic rifle (M1A CQB, Doctor Home talent)
-  - Bittersweet exotic rifle (Classic M1A, Transfusion talent)
-  - The Ravenous exotic rifle (SIG 716, Geri and Freki talent)
-  - Vindicator exotic rifle (MDR, Ortiz Assault Interface talent)
-  - Mantis exotic MMR (SRS-A1, In Plain Sight talent)
-  - Shroud exotic MMR (M700 Carbon, High Priority Target talent)
-  - Sacrum Imperium exotic MMR (G28, The Trap talent)
-  - Dread Edict exotic MMR (SVD, Full Stop talent)
-
-  Weapon Talents:
-  - Bighorn (Exotic)
-  - Cover Shooter (Exotic) — Big Alejandro
-  - Payment in Kind (Exotic) — Backfire
-  - Unnerve (Exotic) — Strega
-  - Breathe Free (Exotic) — Lady Death
-  - Chatterbox, Bluescreen, Bullet King, Iron Lung, Pakhan, Transfusion,
-    Agonizing Bite, Doctor Home, Merciless, Ruthless, Geri and Freki,
-    Ortiz Assault Interface, Full Stop, In Plain Sight, High Priority Target,
-    The Trap, Sandman, Capitulate, Liberty, Whiplash, Oxpecker,
-    Mosquito Song, Restrained (all new exotic talent entries)
-  - 50 "Perfect X" named weapon talent entries added (Perfect Stabilize,
-    Perfect Killer, Perfect Frenzy, Perfectly In Sync, Future Perfection, etc.)
-  - Hidden Rock — The Sleigher (headshots apply confuse, 20s cooldown)
-  - Removed NinjaBike from weapon talents (it is a gear talent, not a weapon talent)
-
-  Gear Talents:
-  - Weakest Link (Exotic) — Overdogs gloves
-  - Gear set chest talents: Snowball, Risk Management, Hollow-Point Ammo,
-    Makeshift Repairs, Overcharge, Proliferation, Aces High, Bulwark Protocol,
-    Umbra Protocol, Scales of Justice, Point of no Return, Overcharging,
-    All for One, Tactical Superiority, Max BPM, Endless Hunger, Hivemind,
-    Target Rich Environment, Parabellum Rounds, Chain Combustion, Best Buds,
-    Press the Advantage (Rigger), Specialized Destruction, Sustainability
-    (Tip of the Spear), Waving the Flag, Fortissimo
-  - Gear set backpack talents: Press the Advantage (Striker's), Stars and
-    Stripes, Tactical Superiority, Armor Overflow, Feedback Loop, Symptom
-    Aggravator, Dead Man's Hand, Shield Surge, Umbra Surge, Sustainability
-    (Tipping Scales), Point of Honor, Safe Charging, One for All, Advanced
-    Combat Tactics, Cold, Overwhelming Force, Smart Cooperation, Critical
-    Measures, Trauma Specialist, Heatstroke, Complete Uptime, Risk Management
-    (Rigger), Signature Moves, Snowball (Tip of the Spear), Accelerando
-
-  Gear Items:
-  - Chill Out named mask (Gila Guard brand, 2 mod slots, +5% Total Armor)
-  - Airaldi Holdings named mask
-  - Providence Defense named mask
-  - Digital Scope (15x) added to attachments
-
-  Expertise:
-  - Expertise level input (0-20) added to header
-  - Applies bonus to weapon base damage and gear base armor in calculations
-
-  Skill Mods:
-  - Skill Mods section added to skill configuration
-  - Supports Skill Damage %, Skill Haste %, Skill Duration %, Skill Repair %
-
---------------------------------------------------------------------------------
-  NEW FEATURES
---------------------------------------------------------------------------------
-
-  Weapon & Gear Talent Locking:
-  - Exotic weapons now show only their unique locked talent in the dropdown
-    (42 exotic weapons updated — all exotics now have correct talent locked)
-  - Named weapons with a "Perfect" themed talent now show only that talent
-    (73 named weapons updated)
-  - Named weapons without a locked talent continue to show the full list
-  - Selecting an exotic or named weapon auto-selects its correct talent
-  - Fix applies to both Desktop and Cozy theme weapon views
-
-  Attachment Filtering by Weapon Type:
-  - Each weapon now only shows compatible attachments in its dropdowns
-  - ARs see 5.56 muzzles and 5.56 magazines
-  - SMGs see 9mm or .45 ACP muzzles and magazines based on caliber
-  - LMGs see belt-fed magazines only
-  - MMRs see marksman-specific magazines and high-magnification scopes
-  - Pistols see pistol-specific underbarrels, magazines, and muzzles
-  - Shotguns see tubular spring magazines
-  - Scopes and underbarrels are filtered to compatible weapon types
-  - Exotic weapons with fixed mods show those slots as read-only
-
-  Gear Attribute Filtering by Slot:
-  - Each gear slot now only shows attributes that can actually roll on it
-  - Gloves: Offensive attributes only (Crit Chance, Crit Damage, Headshot
-    Damage, Weapon Handling, Protection from Elites, Damage to Health)
-  - Kneepads: Defensive attributes + limited Utility (Skill Haste,
-    Skill Duration, Status Effects) — no offensive attributes
-  - Holster: Offensive + limited Defensive (Armor on Kill, Incoming Repairs,
-    Hazard Protection, Health, Pulse Resistance) + limited Utility
-    (Skill Haste, Status Effects)
-  - Mask, Chest, Backpack: Full attribute pool available
-
-================================================================================
-
---------------------------------------------------------------------------------
-  QoL UPDATE — SHD Levels & Crit Mode
---------------------------------------------------------------------------------
-
-  SHD Levels Page:
-  - Added "Max All" button — sets all SHD stat inputs to 50 in one click
-  - Added "Zero All" button — resets all SHD stat inputs to 0 in one click
-  - Both buttons trigger recalculation automatically
-
-  Stat Panel — Weapon Blocks:
-  - Added CRIT button next to the existing HS button for each weapon slot
-    (Primary, Secondary, Sidearm)
-  - When active, assumes 100% critical hit chance so DPS values reflect
-    full crit output — useful for comparing crit vs non-crit builds
-  - Button lights up cyan when active, same visual pattern as the HS button
-
-================================================================================
-
---------------------------------------------------------------------------------
-  BUG FIXES — COZY THEME
---------------------------------------------------------------------------------
-
-  - Fixed Cozy theme page navigation: clicking Compare, SHD Levels, or
-    Specializations from any other page now correctly clears the previous page
-    before showing the new one. Previously the content was appended to the
-    bottom of the current page instead of replacing it.
-
---------------------------------------------------------------------------------
-  BUG FIXES — LIQUID GLASS THEME
---------------------------------------------------------------------------------
-
-  - DTA, DTWA, DTOC, HS, and CRIT toggle buttons now show a clearly visible
-    active state: solid bright border, outer glow, and tinted background when
-    active. Previously the active state was nearly invisible in liquid glass.
-  - Skill picker replaced with custom styled panel matching the weapon and gear
-    picker — frosted glass panel, search input, scrollable list with amber hover.
-    Previously used a plain browser native select element that ignored theming.
+  - Tool version bumped to v1.7.9 across title, header, SAVE_VERSION,
+    screenshot renderer, and package.json
 
 ================================================================================

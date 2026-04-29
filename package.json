@@ -1,6 +1,6 @@
 {
   "name": "division2-gear-calculator",
-  "version": "1.7.4",
+  "version": "1.7.9",
   "description": "Division 2 Gear & DPS Calculator",
   "main": "main.js",
   "author": "ImThatTeryaki",
@@ -46,10 +46,16 @@
       "splash.html",
       "splash-liquid-glass.html",
       "splash-aero.html",
+      "splash-aero-nightshade.html",
       "welcome.html",
       "welcome-liquid-glass.html",
       "welcome-aero.html",
+      "welcome-aero-nightshade.html",
       "division2-gear-calculator-v2.html",
+      "screenshot.html",
+      "assets/**/*",
+      "Fonts/**/*",
+      "html2canvas.min.js",
       "icon.png"
     ]
   },

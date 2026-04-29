@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #080c10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* Scan-line overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,229,255,0.015) 2px,
+        rgba(0,229,255,0.015) 4px
+      );
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Corner brackets */
+    .corner { position: fixed; width: 40px; height: 40px; }
+    .corner.tl { top: 20px; left: 20px; border-top: 2px solid #f4a21e88; border-left: 2px solid #f4a21e88; }
+    .corner.tr { top: 20px; right: 20px; border-top: 2px solid #f4a21e88; border-right: 2px solid #f4a21e88; }
+    .corner.bl { bottom: 20px; left: 20px; border-bottom: 2px solid #f4a21e88; border-left: 2px solid #f4a21e88; }
+    .corner.br { bottom: 20px; right: 20px; border-bottom: 2px solid #f4a21e88; border-right: 2px solid #f4a21e88; }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      opacity: 0;
+      animation: fadeIn 0.4s ease 0.2s forwards;
+    }
+
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    /* SHD badge */
+    .badge {
+      width: 72px; height: 72px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 32px;
+      animation: badgePulse 1.5s ease-in-out infinite;
+    }
+    @keyframes badgePulse {
+      0%,100% { filter: drop-shadow(0 0 8px #f4a21e66); }
+      50%      { filter: drop-shadow(0 0 20px #f4a21eaa); }
+    }
+    .badge img { width: 72px; height: 72px; object-fit: contain; }
+
+    /* "WELCOME AGENT" text — types in */
+    .welcome-line {
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #00e5ff;
+      text-shadow: 0 0 12px #00e5ff88;
+      margin-bottom: 10px;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 0;
+      animation: typeIn 0.6s steps(14,end) 0.5s forwards;
+    }
+    @keyframes typeIn { to { width: 14ch; } }
+
+    .agent-label {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #f4a21e;
+      text-shadow: 0 0 40px #f4a21e88;
+      margin-bottom: 6px;
+      opacity: 0;
+      animation: fadeIn 0.5s ease 1.1s forwards;
+    }
+
+    .codename {
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #4a6070;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeIn 0.5s ease 1.4s forwards;
+    }
+
+    /* Power-on bar */
+    .power-wrap {
+      width: 320px;
+      height: 2px;
+      background: #1e3040;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeIn 0.3s ease 1.6s forwards;
+    }
+    .power-bar {
+      position: absolute;
+      left: 0; top: 0; height: 100%;
+      background: linear-gradient(90deg, #f4a21e, #00e5ff);
+      width: 0%;
+      animation: powerOn 1.2s ease 1.8s forwards;
+    }
+    @keyframes powerOn { to { width: 100%; } }
+
+    .power-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #4a6070;
+      margin-top: 10px;
+      opacity: 0;
+      animation: fadeIn 0.3s ease 1.8s forwards;
+    }
+
+    /* Status line */
+    .status {
+      position: absolute;
+      bottom: 28px;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #00e676;
+      text-shadow: 0 0 8px #00e67666;
+      opacity: 0;
+      animation: fadeIn 0.4s ease 2s forwards;
+    }
+    .status::before { content: '● '; }
+  </style>
+</head>
+<body>
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+
+  <div class="content">
+    <div class="badge">
+      <img src="icon.png" alt="Division 2 Gear Calculator" />
+    </div>
+    <div class="welcome-line">Welcome Agent</div>
+    <div class="agent-label">Division 2</div>
+    <div class="codename">SHD Network — Gear &amp; DPS Calculator</div>
+    <div class="power-wrap"><div class="power-bar"></div></div>
+    <div class="power-label">Initializing systems...</div>
+  </div>
+
+  <div class="status">SHD Network Active</div>
+</body>
+</html>

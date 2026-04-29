@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=1920"/>
+<title>Build Screenshot</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:1920px;min-height:1080px;background:#06080a;font-family:'Rajdhani','Segoe UI',sans-serif;font-size:14px;font-weight:500;color:#c8bfa8;}
+
+/* -- Division 2 Background -- */
+.bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;background:#06080a;overflow:hidden;}
+.bg-wallpaper{position:absolute;inset:0;background-image:url('./assets/wp11837309-division-2-logo-wallpapers.png');background-size:cover;background-position:center top;opacity:0.18;filter:saturate(0.7) brightness(0.6);}
+.bg-liberty{position:absolute;bottom:0;right:-2%;width:52%;min-height:90%;background-image:url('./assets/lib.png');background-size:contain;background-repeat:no-repeat;background-position:bottom right;opacity:0.35;}
+.bg-skull{position:absolute;background-image:url('./assets/rouge skull.png');background-size:contain;background-repeat:no-repeat;background-position:center;filter:sepia(0.4) hue-rotate(340deg) brightness(0.6);}
+.bg-skull-1{width:340px;height:340px;top:2%;left:1%;opacity:0.18;transform:rotate(-12deg);}
+.bg-skull-2{width:90px;height:90px;top:6%;right:20%;opacity:0.22;transform:rotate(8deg);}
+.bg-skull-3{width:520px;height:520px;top:22%;left:36%;opacity:0.10;transform:rotate(-5deg);}
+.bg-skull-4{width:55px;height:55px;top:44%;left:11%;opacity:0.25;transform:rotate(15deg);}
+.bg-skull-5{width:200px;height:200px;top:52%;right:38%;opacity:0.14;transform:rotate(-20deg);}
+.bg-skull-6{width:40px;height:40px;top:14%;left:54%;opacity:0.28;transform:rotate(5deg);}
+.bg-skull-7{width:130px;height:130px;top:68%;left:4%;opacity:0.18;transform:rotate(-8deg);}
+.bg-skull-8{width:28px;height:28px;top:28%;right:9%;opacity:0.30;transform:rotate(22deg);}
+.bg-skull-9{width:260px;height:260px;top:78%;right:18%;opacity:0.13;transform:rotate(-15deg);}
+.bg-skull-10{width:18px;height:18px;top:10%;left:30%;opacity:0.32;transform:rotate(45deg);}
+.bg-skull-11{width:70px;height:70px;top:35%;left:22%;opacity:0.20;transform:rotate(-33deg);}
+.bg-skull-12{width:22px;height:22px;top:58%;left:48%;opacity:0.30;transform:rotate(67deg);}
+.bg-skull-13{width:110px;height:110px;top:18%;right:42%;opacity:0.16;transform:rotate(-18deg);}
+.bg-skull-14{width:35px;height:35px;top:72%;right:28%;opacity:0.26;transform:rotate(12deg);}
+.bg-skull-15{width:480px;height:480px;top:5%;left:55%;opacity:0.07;transform:rotate(7deg);}
+.bg-skull-16{width:16px;height:16px;top:48%;right:52%;opacity:0.34;transform:rotate(-55deg);}
+.bg-skull-17{width:85px;height:85px;top:82%;left:28%;opacity:0.18;transform:rotate(28deg);}
+.bg-skull-18{width:45px;height:45px;top:25%;left:8%;opacity:0.22;transform:rotate(-42deg);}
+.bg-skull-19{width:150px;height:150px;top:62%;right:8%;opacity:0.16;transform:rotate(18deg);}
+.bg-skull-20{width:24px;height:24px;top:90%;left:60%;opacity:0.28;transform:rotate(-70deg);}
+.bg-skull-21{width:60px;height:60px;top:40%;right:62%;opacity:0.20;transform:rotate(35deg);}
+.bg-skull-22{width:300px;height:300px;top:55%;left:18%;opacity:0.09;transform:rotate(-10deg);}
+.bg-skull-23{width:20px;height:20px;top:5%;left:72%;opacity:0.32;transform:rotate(80deg);}
+.bg-skull-24{width:75px;height:75px;top:88%;right:45%;opacity:0.18;transform:rotate(-25deg);}
+.bg-skull-25{width:32px;height:32px;top:33%;left:65%;opacity:0.24;transform:rotate(52deg);}
+.bg-skull-26{width:14px;height:14px;top:50%;left:38%;opacity:0.35;transform:rotate(-88deg);}
+.bg-skull-27{width:50px;height:50px;top:16%;left:44%;opacity:0.22;transform:rotate(60deg);}
+.bg-skull-28{width:190px;height:190px;top:38%;right:5%;opacity:0.12;transform:rotate(-30deg);}
+.bg-skull-29{width:26px;height:26px;top:74%;left:52%;opacity:0.28;transform:rotate(15deg);}
+.bg-skull-30{width:400px;height:400px;top:60%;left:0%;opacity:0.06;transform:rotate(3deg);}
+.bg-skull-31{width:12px;height:12px;top:22%;right:30%;opacity:0.38;transform:rotate(-75deg);}
+.bg-skull-32{width:65px;height:65px;top:92%;left:15%;opacity:0.20;transform:rotate(40deg);}
+.bg-skull-33{width:38px;height:38px;top:8%;left:18%;opacity:0.26;transform:rotate(-20deg);}
+.bg-skull-34{width:120px;height:120px;top:46%;right:22%;opacity:0.15;transform:rotate(55deg);}
+.bg-skull-35{width:10px;height:10px;top:30%;left:78%;opacity:0.40;transform:rotate(-95deg);}
+.bg-gradient{position:absolute;inset:0;background:radial-gradient(ellipse 60% 45% at 20% 5%,rgba(244,100,10,0.32) 0%,transparent 70%),radial-gradient(ellipse 45% 38% at 70% 10%,rgba(244,130,20,0.22) 0%,transparent 70%),radial-gradient(ellipse 30% 32% at 10% 45%,rgba(200,30,10,0.20) 0%,transparent 70%),radial-gradient(ellipse 35% 30% at 92% 55%,rgba(180,25,8,0.16) 0%,transparent 70%),radial-gradient(ellipse 45% 38% at 95% 25%,rgba(10,60,140,0.20) 0%,transparent 70%),radial-gradient(ellipse 38% 32% at 5% 60%,rgba(15,70,160,0.16) 0%,transparent 70%),radial-gradient(ellipse 35% 30% at 50% 40%,rgba(0,160,200,0.14) 0%,transparent 70%),radial-gradient(ellipse 55% 42% at 50% 75%,rgba(244,162,30,0.12) 0%,transparent 70%),radial-gradient(ellipse 25% 22% at 96% 10%,rgba(200,30,10,0.12) 0%,transparent 70%),radial-gradient(ellipse 38% 30% at 25% 88%,rgba(8,40,100,0.18) 0%,transparent 70%),radial-gradient(ellipse 32% 28% at 75% 82%,rgba(12,50,120,0.16) 0%,transparent 70%);}
+.bg-beam{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(244,162,30,0.06) 0%,transparent 38%);clip-path:polygon(0 0,9% 0,48% 100%,37% 100%);}
+.bg-ui-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.025) 1px,transparent 1px),linear-gradient(45deg,rgba(244,162,30,0.012) 1px,transparent 1px),linear-gradient(-45deg,rgba(244,162,30,0.012) 1px,transparent 1px);background-size:80px 80px,80px 80px,113px 113px,113px 113px;}
+.bg-corner{position:absolute;width:80px;height:80px;}
+.bg-corner-tl{top:12px;left:12px;border-top:2px solid rgba(244,162,30,0.35);border-left:2px solid rgba(244,162,30,0.35);}
+.bg-corner-tr{top:12px;right:12px;border-top:2px solid rgba(244,162,30,0.35);border-right:2px solid rgba(244,162,30,0.35);}
+.bg-corner-bl{bottom:12px;left:12px;border-bottom:2px solid rgba(244,162,30,0.20);border-left:2px solid rgba(244,162,30,0.20);}
+.bg-corner-br{bottom:12px;right:12px;border-bottom:2px solid rgba(244,162,30,0.20);border-right:2px solid rgba(244,162,30,0.20);}
+.bg-hline{position:absolute;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(244,162,30,0.12) 20%,rgba(244,162,30,0.12) 80%,transparent);}
+.bg-scanlines{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.035) 3px,rgba(0,0,0,0.035) 4px);}
+.bg-glitch{position:absolute;left:0;width:100%;opacity:0.07;}
+.bg-watermark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-8deg);font-size:72px;font-weight:900;color:rgba(244,162,30,0.025);white-space:nowrap;letter-spacing:0.1em;text-transform:uppercase;pointer-events:none;user-select:none;width:300%;text-align:center;}
+
+/* -- Layout -- */
+.page{position:relative;z-index:1;width:1920px;padding:20px;display:flex;flex-direction:column;gap:12px;}
+
+/* -- Header -- */
+.ss-header{
+  background:rgba(20,30,44,0.75);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(244,162,30,0.2);
+  border-top:3px solid #d4a853;
+  padding:16px 24px;
+  display:flex;align-items:center;gap:16px;
+}
+.ss-header-name{font-size:28px;font-weight:700;color:#f2ead8;letter-spacing:0.1em;text-transform:uppercase;}
+.ss-header-badge{
+  padding:4px 14px;border:1px solid;border-radius:2px;
+  font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
+}
+.ss-header-right{margin-left:auto;text-align:right;}
+.ss-header-version{font-size:11px;color:#d4a853;letter-spacing:0.1em;}
+.ss-header-date{font-size:10px;color:#8a9070;margin-top:2px;}
+
+/* -- Section title -- */
+.ss-section{
+  background:rgba(20,30,44,0.60);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border-left:4px solid #d4a853;
+  padding:6px 14px;
+  font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#d4a853;
+  margin-bottom:4px;
+}
+
+/* -- Card grid -- */
+.ss-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.ss-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.ss-grid-6{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
+
+/* -- Card -- */
+.ss-card{
+  background:rgba(22,24,32,0.55);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(212,168,83,0.15);
+  border-top:3px solid #d4a853;
+  padding:14px 16px;
+  position:relative;
+  overflow:hidden;
+}
+.ss-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.03) 0%,transparent 60%);
+  pointer-events:none;
+}
+.ss-card.rarity-exotic{border-top-color:#d47814;background:rgba(30,20,10,0.55);}
+.ss-card.rarity-named{border-top-color:#d47814;background:rgba(28,18,8,0.55);}
+.ss-card.rarity-high-end{border-top-color:#148cb4;background:rgba(8,20,30,0.55);}
+.ss-card.rarity-gear-set{border-top-color:#643cb4;background:rgba(15,8,28,0.55);}
+.ss-card.rarity-prototype{border-top-color:#a855f7;background:rgba(20,8,30,0.55);}
+
+/* -- Card internals -- */
+.ss-slot-label{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#8a9070;margin-bottom:6px;}
+.ss-item-name{font-size:15px;font-weight:700;color:#f2ead8;margin-bottom:2px;line-height:1.2;}
+.ss-item-quality{font-size:10px;color:#8a9070;margin-bottom:8px;}
+.ss-divider{height:1px;background:rgba(212,168,83,0.12);margin:8px 0;}
+.ss-subhdr{
+  font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
+  color:#c07830;background:rgba(37,40,48,0.60);
+  margin:8px -16px 10px;padding:5px 16px;
+  border-left:3px solid #c07830;
+}
+.ss-kv{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;gap:8px;}
+.ss-kv-label{font-size:10px;color:#8a9070;text-transform:uppercase;letter-spacing:0.05em;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ss-kv-val{font-size:11px;font-weight:700;color:#f2ead8;font-family:'Share Tech Mono',monospace;white-space:nowrap;flex-shrink:0;}
+.ss-kv-val.accent{color:#d4a853;}
+.ss-kv-val.cyan{color:#7aaa8e;}
+.ss-kv-val.blue{color:#5ba8c4;}
+.ss-talent-name{font-size:12px;font-weight:700;color:#7aaa8e;margin-bottom:3px;}
+.ss-talent-desc{font-size:9px;color:#8a9070;line-height:1.5;}
+.ss-farming{font-size:9px;color:#8a9070;font-style:italic;margin-top:6px;}
+.ss-farming::before{content:'?? ';}
+.ss-unequipped{font-size:13px;color:#8a9070;font-style:italic;padding:8px 0;}
+
+/* -- DPS values -- */
+.ss-dps-block{background:rgba(0,0,0,0.25);border-left:3px solid #d4a853;padding:8px 12px;margin-top:8px;}
+.ss-dps-val{font-size:20px;font-weight:700;color:#d4a853;font-family:'Share Tech Mono',monospace;}
+.ss-dps-label{font-size:9px;color:#8a9070;letter-spacing:0.1em;text-transform:uppercase;}
+.ss-dps-sub{font-size:9px;color:#8a9070;margin-top:2px;}
+
+/* -- Stat panel -- */
+.ss-stat-section-title{
+  font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
+  color:#d4a853;padding:5px 10px;
+  background:rgba(20,30,44,0.60);border-left:3px solid #d4a853;
+  margin-bottom:8px;
+}
+.ss-stat-section-title.cyan{color:#7aaa8e;border-left-color:#7aaa8e;}
+.ss-stat-section-title.blue{color:#5ba8c4;border-left-color:#5ba8c4;}
+
+/* -- Skill tier badge -- */
+.ss-tier-badge{
+  display:inline-block;padding:2px 10px;border:1px solid;border-radius:2px;
+  font-size:10px;font-weight:700;letter-spacing:0.1em;margin-bottom:8px;
+}
+
+/* -- Build profile bars -- */
+.ss-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ss-bar-label{font-size:10px;color:#8a9070;text-transform:uppercase;letter-spacing:0.05em;width:60px;flex-shrink:0;}
+.ss-bar-track{flex:1;height:12px;background:rgba(255,255,255,0.06);border-radius:1px;overflow:hidden;}
+.ss-bar-fill{height:100%;border-radius:1px;}
+
+/* -- Active bonuses -- */
+.ss-bonus-item{margin-bottom:10px;padding-left:10px;border-left:3px solid #148cb4;}
+.ss-bonus-item.set{border-left-color:#643cb4;}
+.ss-bonus-name{font-size:11px;font-weight:700;color:#f2ead8;margin-bottom:2px;}
+.ss-bonus-stat{font-size:10px;color:#7aaa8e;}
+
+/* -- Spec perks -- */
+.ss-perk-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid rgba(212,168,83,0.08);}
+.ss-perk-left{flex:1;min-width:0;}
+.ss-perk-name{font-size:12px;font-weight:700;margin-bottom:2px;}
+.ss-perk-desc{font-size:9px;color:#8a9070;line-height:1.5;margin-bottom:3px;}
+.ss-perk-val{font-size:10px;font-weight:700;}
+.ss-perk-right{flex-shrink:0;margin-left:12px;text-align:right;}
+.ss-perk-badge{
+  display:inline-block;padding:2px 8px;font-size:9px;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;border:1px solid;border-radius:1px;
+}
+.ss-pip-row{display:flex;gap:3px;margin-top:4px;justify-content:flex-end;}
+.ss-pip{width:14px;height:8px;border-radius:1px;}
+
+/* -- SHD grid -- */
+.ss-shd-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;}
+.ss-shd-row{display:flex;justify-content:space-between;align-items:center;padding:4px 8px;background:rgba(0,0,0,0.2);border-radius:1px;}
+.ss-shd-row.active{background:rgba(212,168,83,0.10);border-left:2px solid #d4a853;}
+.ss-shd-label{font-size:10px;color:#8a9070;}
+.ss-shd-val{font-size:11px;font-weight:700;color:#f2ead8;font-family:'Share Tech Mono',monospace;}
+.ss-shd-val.active{color:#d4a853;}
+
+/* -- Footer -- */
+.ss-footer{
+  background:rgba(20,30,44,0.75);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(212,168,83,0.15);
+  border-top:3px solid #d4a853;
+  padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:8px;
+}
+.ss-footer-left .title{font-size:16px;font-weight:700;color:#d4a853;letter-spacing:0.1em;}
+.ss-footer-left .link{font-size:10px;color:#7aaa8e;margin-top:2px;}
+.ss-footer-right{text-align:right;}
+.ss-footer-right .credit{font-size:12px;font-weight:700;color:#f2ead8;}
+.ss-footer-right .version{font-size:10px;color:#d4a853;margin-top:2px;}
+</style>
+</head>
+<body>
+<div class="bg">
+  <!-- Base wallpaper -->
+  <div class="bg-wallpaper"></div>
+  <!-- Atmospheric color gradients -->
+  <div class="bg-gradient"></div>
+  <!-- SHD diagonal beam -->
+  <div class="bg-beam"></div>
+  <!-- Division 2 UI tech grid -->
+  <div class="bg-ui-grid"></div>
+  <!-- Rogue skulls — various sizes scattered -->
+  <div class="bg-skull bg-skull-1"></div>
+  <div class="bg-skull bg-skull-2"></div>
+  <div class="bg-skull bg-skull-3"></div>
+  <div class="bg-skull bg-skull-4"></div>
+  <div class="bg-skull bg-skull-5"></div>
+  <div class="bg-skull bg-skull-6"></div>
+  <div class="bg-skull bg-skull-7"></div>
+  <div class="bg-skull bg-skull-8"></div>
+  <div class="bg-skull bg-skull-9"></div>
+  <div class="bg-skull bg-skull-10"></div>
+  <div class="bg-skull bg-skull-11"></div>
+  <div class="bg-skull bg-skull-12"></div>
+  <div class="bg-skull bg-skull-13"></div>
+  <div class="bg-skull bg-skull-14"></div>
+  <div class="bg-skull bg-skull-15"></div>
+  <div class="bg-skull bg-skull-16"></div>
+  <div class="bg-skull bg-skull-17"></div>
+  <div class="bg-skull bg-skull-18"></div>
+  <div class="bg-skull bg-skull-19"></div>
+  <div class="bg-skull bg-skull-20"></div>
+  <div class="bg-skull bg-skull-21"></div>
+  <div class="bg-skull bg-skull-22"></div>
+  <div class="bg-skull bg-skull-23"></div>
+  <div class="bg-skull bg-skull-24"></div>
+  <div class="bg-skull bg-skull-25"></div>
+  <div class="bg-skull bg-skull-26"></div>
+  <div class="bg-skull bg-skull-27"></div>
+  <div class="bg-skull bg-skull-28"></div>
+  <div class="bg-skull bg-skull-29"></div>
+  <div class="bg-skull bg-skull-30"></div>
+  <div class="bg-skull bg-skull-31"></div>
+  <div class="bg-skull bg-skull-32"></div>
+  <div class="bg-skull bg-skull-33"></div>
+  <div class="bg-skull bg-skull-34"></div>
+  <div class="bg-skull bg-skull-35"></div>
+  <!-- Statue of Liberty — bottom right, full visible -->
+  <div class="bg-liberty"></div>
+  <!-- Corner bracket decorations -->
+  <div class="bg-corner bg-corner-tl"></div>
+  <div class="bg-corner bg-corner-tr"></div>
+  <div class="bg-corner bg-corner-bl"></div>
+  <div class="bg-corner bg-corner-br"></div>
+  <!-- Horizontal divider lines -->
+  <div class="bg-hline" style="top:20%;"></div>
+  <div class="bg-hline" style="top:40%;"></div>
+  <div class="bg-hline" style="top:60%;"></div>
+  <div class="bg-hline" style="top:80%;"></div>
+  <!-- Scanlines -->
+  <div class="bg-scanlines"></div>
+  <!-- Glitch bars -->
+  <div class="bg-glitch" style="top:15%;height:2px;background:#f4a21e;"></div>
+  <div class="bg-glitch" style="top:42%;height:1px;background:#00e5ff;"></div>
+  <div class="bg-glitch" style="top:68%;height:3px;background:#cc2200;"></div>
+  <div class="bg-glitch" style="top:88%;height:1px;background:#f4a21e;"></div>
+  <!-- SHD watermark text -->
+  <div class="bg-watermark">SHD NETWORK ACTIVE &nbsp; DIVISION AGENT &nbsp; GEAR CALCULATOR &nbsp; STRATEGIC HOMELAND DIVISION &nbsp; WASHINGTON DC &nbsp; SHD NETWORK ACTIVE &nbsp; DIVISION AGENT &nbsp; GEAR CALCULATOR</div>
+</div>
+<div class="page" id="page">
+  <!-- Rendered by JS below -->
+</div>
+<script>
+// -- Helpers ------------------------------------------------------------------
+function esc(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function kv(label,val,valClass=''){return`<div class="ss-kv"><span class="ss-kv-label">${esc(label)}</span><span class="ss-kv-val ${valClass}">${esc(val)}</span></div>`;}
+function subhdr(label,color=''){return`<div class="ss-subhdr" style="${color?'color:'+color+';border-left-color:'+color:''}">${esc(label)}</div>`;}
+function divider(){return'<div class="ss-divider"></div>';}
+function rarityClass(q){const m={'High-End':'rarity-high-end','Named':'rarity-named','Exotic':'rarity-exotic','Gear Set':'rarity-gear-set','Prototype':'rarity-prototype'};return m[q]||'';}
+function rarityColor(q){const m={'High-End':'#148cb4','Named':'#d47814','Exotic':'#d47814','Gear Set':'#643cb4','Prototype':'#a855f7'};return m[q]||'#d4a853';}
+
+const D = window.__buildData;
+if(!D){document.getElementById('page').innerHTML='<div style="color:red;padding:40px">No build data received</div>';throw new Error('no data');}
+
+const {buildState,stats,dpsResults,DB,SKILLS_DB,SKILL_STAT_LABELS,SKILL_TIER_MULT,SPECIALIZATIONS_DB,SHD_STAT_IDS,version} = D;
+
+// -- Stat label map ------------------------------------------------------------
+const SL={weaponDamage:'Weapon Damage',totalWeaponDamage:'Total Wpn Dmg',headshotDamage:'Headshot Dmg',critChance:'Crit Chance',critDamage:'Crit Damage',damageToElites:'Dmg to Elites',damageToArmor:'Dmg to Armor',damageToHealth:'Dmg to Health',arDamage:'AR Damage',smgDamage:'SMG Damage',lmgDamage:'LMG Damage',rifleDamage:'Rifle Damage',mmrDamage:'MMR Damage',shotgunDamage:'Shotgun Damage',pistolDamage:'Pistol Damage',armor:'Armor',health:'Health',explosiveRes:'Explosive Res',hazardProtection:'Hazard Prot',armorRegen:'Armor Regen',incomingRepairs:'Incoming Repairs',armorOnKill:'Armor on Kill',skillTier:'Skill Tier',skillDamage:'Skill Damage',skillHaste:'Skill Haste',skillDuration:'Skill Duration',skillRepair:'Skill Repair',skillHealth:'Skill Health',statusEffects:'Status Effects',pulseResistance:'Pulse Resistance',weaponHandling:'Weapon Handling',reloadSpeed:'Reload Speed',accuracy:'Accuracy',stability:'Stability'};
+const sl=k=>SL[k]||k;
+
+// -- Header --------------------------------------------------------------------
+const bname=esc(buildState.buildName||buildState.name||'Unnamed Build');
+const btype=buildState.buildType||'DPS';
+const btypeColors={DPS:'#d4a853',Tank:'#7aaa8e',Skill:'#5ba8c4',Support:'#a87aaa',Hybrid:'#c47a5b'};
+const btc=btypeColors[btype]||'#d4a853';
+const nd=new Date();
+const dateStr=`${nd.getFullYear()}-${String(nd.getMonth()+1).padStart(2,'0')}-${String(nd.getDate()).padStart(2,'0')}`;
+let html=`
+<div class="ss-header">
+  <div class="ss-header-name">${bname}</div>
+  <div class="ss-header-badge" style="color:${btc};border-color:${btc};background:${btc}22">${esc(btype)}</div>
+  <div class="ss-header-right">
+    <div class="ss-header-version">Division 2 Gear Calc ${esc(version||'v1.7.5')}</div>
+    <div class="ss-header-date">${dateStr}</div>
+  </div>
+</div>`;
+
+// -- Weapons -------------------------------------------------------------------
+const wLabels=['Primary','Secondary','Sidearm'];
+html+=`<div class="ss-section">Weapons</div><div class="ss-grid-3">`;
+buildState.weapons.forEach((ws,i)=>{
+  const wp=ws.weaponId?DB.weapons.find(w=>w.id===ws.weaponId):null;
+  const dr=dpsResults&&dpsResults[i];
+  const qc=wp?rarityColor(wp.quality):'#8a9070';
+  const rc=wp?rarityClass(wp.quality):'';
+  if(!wp){html+=`<div class="ss-card ${rc}"><div class="ss-slot-label">${wLabels[i]}</div><div class="ss-unequipped">— Unequipped —</div></div>`;return;}
+  const baseDmg=Math.round((ws.baseDamage||wp.baseDamage||0)*(1+(ws.expertise||0)/100));
+  html+=`<div class="ss-card ${rc}" style="border-top-color:${qc}">
+    <div class="ss-slot-label">${wLabels[i]}</div>
+    <div class="ss-item-name" style="color:${qc}">${esc(wp.name)}</div>
+    <div class="ss-item-quality">${esc(wp.quality)} · ${esc(wp.type)}</div>
+    ${divider()}
+    ${kv('Base Damage',baseDmg.toLocaleString(),'accent')}
+    ${kv('Expertise',String(ws.expertise||0))}
+    ${kv('RPM',String(wp.rpm||0))}
+    ${kv('Magazine',String(wp.magazineSize||0))}
+    ${kv('Opt Range',(wp.optimalRange||0)+'m')}`;
+  if(dr&&dr.trueDPS>0){html+=`<div class="ss-dps-block">
+    <div class="ss-dps-label">True DPS</div>
+    <div class="ss-dps-val">${Math.round(dr.trueDPS).toLocaleString()}</div>
+    <div class="ss-dps-sub">Burst: ${dr.burstDPS>0?Math.round(dr.burstDPS).toLocaleString():'—'} · Sustained: ${dr.sustainedDPS>0?Math.round(dr.sustainedDPS).toLocaleString():'—'}</div>
+    <div class="ss-dps-sub">Per Shot: ${dr.perShot>0?Math.round(dr.perShot).toLocaleString():'—'}</div>
+  </div>`;}
+  // Core slots
+  if(ws.weaponCoreSlots&&ws.weaponCoreSlots.core1){
+    html+=subhdr('Core Attributes');
+    html+=kv('Core 1 (Wpn Dmg)',ws.weaponCoreSlots.core1+'%','accent');
+    if(ws.weaponCoreSlots.core2Type)html+=kv('Core 2 ('+sl(ws.weaponCoreSlots.core2Type)+')',(ws.weaponCoreSlots.core2Val||0)+'%','accent');
+  }
+  // Attributes
+  const wAttrs=(ws.weaponAttrs||[]).filter(a=>a.statType);
+  if(wAttrs.length){html+=subhdr('Attributes');wAttrs.forEach(a=>{html+=kv(sl(a.statType),(a.value||0)+'%');});}
+  // Attachments
+  const attSlots=['Scope','Muzzle','Underbarrel','Magazine'];
+  const hasAtt=ws.attachments&&attSlots.some(s=>ws.attachments[s]&&ws.attachments[s].id);
+  if(hasAtt){
+    html+=subhdr('Attachments');
+    attSlots.forEach(slot=>{
+      const att=ws.attachments[slot];if(!att||!att.id)return;
+      const attDB=DB.attachments&&DB.attachments[slot]?DB.attachments[slot].find(a=>a.id===att.id):null;
+      const attName=attDB?attDB.name:att.id.replace(/^att_[a-z]+_/,'').replace(/_/g,' ');
+      html+=kv(slot,attName);
+      if(attDB&&attDB.modifiers){Object.entries(attDB.modifiers).forEach(([mk,mv])=>{if(!mv)return;html+=kv('  '+sl(mk),(mv>0?'+':'')+mv+'%',mv>0?'cyan':'');});}
+    });
+  }
+  // Talent
+  const tal=ws.talent&&ws.talent.id?DB.weaponTalents.find(t=>t.id===ws.talent.id):null;
+  if(tal){html+=subhdr('Talent','#7aaa8e');html+=`<div class="ss-talent-name">${esc(tal.name)}</div>`;if(tal.description)html+=`<div class="ss-talent-desc">${esc(tal.description)}</div>`;}
+  // Farming
+  const fm=DB.farmingInfo&&DB.farmingInfo[wp.id];
+  if(fm)html+=`<div class="ss-farming">${esc(String(fm))}</div>`;
+  html+=`</div>`;
+});
+html+=`</div>`;
+
+// -- Gear ----------------------------------------------------------------------
+const slotNames=['Mask','Chest','Backpack','Gloves','Holster','Kneepads'];
+html+=`<div class="ss-section">Gear</div><div class="ss-grid-3">`;
+buildState.gear.forEach((gs,i)=>{
+  const it=gs.itemId?DB.gearItems.find(g=>g.id===gs.itemId):null;
+  const qc=it?rarityColor(it.quality):'#8a9070';
+  const rc=it?rarityClass(it.quality):'';
+  if(!it){html+=`<div class="ss-card ${rc}"><div class="ss-slot-label">${slotNames[i]}</div><div class="ss-unequipped">— Unequipped —</div></div>`;return;}
+  const armor=Math.round((gs.armor||it.baseArmor||0)*(1+(gs.expertise||0)/100));
+  html+=`<div class="ss-card ${rc}" style="border-top-color:${qc}">
+    <div class="ss-slot-label">${slotNames[i]}</div>
+    <div class="ss-item-name" style="color:${qc}">${esc(it.name)}</div>
+    <div class="ss-item-quality">${esc(it.quality)}${it.gearSet?' · '+it.gearSet:it.brand?' · '+it.brand:''}</div>
+    ${divider()}
+    ${kv('Armor',armor.toLocaleString())}
+    ${kv('Expertise',String(gs.expertise||0))}`;
+  if(gs.coreAttribute&&gs.coreAttribute.statType)html+=kv(sl(gs.coreAttribute.statType),(gs.coreAttribute.value||0)+'%','accent');
+  const attrs=(gs.attributes||[]).filter(a=>a.statType);
+  if(attrs.length){html+=subhdr('Attributes');attrs.forEach(a=>{html+=kv(sl(a.statType),(a.value||0)+'%');});}
+  const mods=(gs.mods||[]).filter(m=>m.statType);
+  if(mods.length){html+=subhdr('Mods');mods.forEach(m=>{html+=kv(sl(m.statType),(m.value||0)+'%');});}
+  const gt=gs.talent&&gs.talent.id?DB.gearTalents.find(t=>t.id===gs.talent.id):null;
+  if(gt){html+=subhdr('Talent','#7aaa8e');html+=`<div class="ss-talent-name">${esc(gt.name)}</div>`;if(gt.description)html+=`<div class="ss-talent-desc">${esc(gt.description)}</div>`;}
+  const fm2=(DB.farmingInfo&&DB.farmingInfo[it.id])||it.farmingSource;
+  if(fm2)html+=`<div class="ss-farming">${esc(String(fm2))}</div>`;
+  html+=`</div>`;
+});
+html+=`</div>`;
+// -- Skills --------------------------------------------------------------------
+const rawT=(stats.skillTier||0);
+const effT=Math.min(6,Math.max(0,Math.floor(rawT)));
+const tMult=SKILL_TIER_MULT[effT]||1;
+const tierColors=['#4a6070','#5a8a6a','#4a9a7a','#3aaa8a','#2aba9a','#1acaaa','#7aaa8e'];
+const tc=tierColors[effT];
+html+=`<div class="ss-section">Skills</div><div class="ss-grid-2">`;
+buildState.skills.forEach((ss,i)=>{
+  const sd=ss.skillName?SKILLS_DB[ss.skillName]:null;
+  const vd=sd&&ss.modName?sd.mods[ss.modName]:null;
+  if(!sd||!vd){html+=`<div class="ss-card"><div class="ss-slot-label">Skill ${i+1}</div><div class="ss-unequipped">— Unequipped —</div></div>`;return;}
+  html+=`<div class="ss-card" style="border-top-color:${tc}">
+    <div class="ss-slot-label">Skill ${i+1}</div>
+    <div class="ss-item-name" style="color:${tc}">${esc(ss.skillName)}</div>
+    <div class="ss-item-quality">${esc(ss.modName)}</div>
+    <div class="ss-tier-badge" style="color:${tc};border-color:${tc};background:${tc}22">Tier ${effT}${effT===6?' ?':''}</div>
+    ${divider()}`;
+  Object.entries(SKILL_STAT_LABELS).forEach(([key,meta])=>{
+    const val=vd[key];if(val==null)return;
+    const sc2=meta.scale?Math.round(val*tMult):val;
+    const dv=meta.unit==='%'?sc2+'%':(meta.unit?sc2.toLocaleString()+' '+meta.unit:String(sc2));
+    html+=kv(meta.label,dv,meta.scale?'accent':'');
+  });
+  const mods=ss.modPlatform||{};
+  const activeMods=Object.values(mods).filter(m=>m&&m.statType);
+  if(activeMods.length){html+=subhdr('Skill Mods','#7aaa8e');activeMods.forEach(m=>{html+=kv(sl(m.statType),(m.value||0)+'%');});}
+  html+=`</div>`;
+});
+html+=`</div>`;
+
+// -- Stats + Build Profile (side by side) --------------------------------------
+html+=`<div class="ss-section">Stats & Build Profile</div><div class="ss-grid-2">`;
+
+// Left: Stat Summary (3 columns inside)
+html+=`<div class="ss-card">
+  <div class="ss-grid-3">
+    <div>
+      <div class="ss-stat-section-title">Offense</div>
+      ${kv('Weapon Damage',(stats.weaponDamage||0).toFixed(1)+'%','accent')}
+      ${kv('Total Wpn Dmg',(stats.totalWeaponDamage||0).toFixed(1)+'%','accent')}
+      ${kv('Headshot Dmg',(stats.headshotDamage||0).toFixed(1)+'%')}
+      ${kv('Crit Chance',(stats.critChance||0).toFixed(1)+'%')}
+      ${kv('Crit Damage',(stats.critDamage||0).toFixed(1)+'%')}
+      ${kv('Dmg to Elites',(stats.damageToElites||0).toFixed(1)+'%')}
+      ${kv('Dmg to Armor',(stats.damageToArmor||0).toFixed(1)+'%')}
+      ${kv('Dmg to Health',(stats.damageToHealth||0).toFixed(1)+'%')}
+      ${stats.arDamage>0?kv('AR Damage',(stats.arDamage||0).toFixed(1)+'%'):''}
+      ${stats.smgDamage>0?kv('SMG Damage',(stats.smgDamage||0).toFixed(1)+'%'):''}
+      ${stats.lmgDamage>0?kv('LMG Damage',(stats.lmgDamage||0).toFixed(1)+'%'):''}
+      ${stats.rifleDamage>0?kv('Rifle Damage',(stats.rifleDamage||0).toFixed(1)+'%'):''}
+      ${stats.mmrDamage>0?kv('MMR Damage',(stats.mmrDamage||0).toFixed(1)+'%'):''}
+      ${stats.shotgunDamage>0?kv('Shotgun Dmg',(stats.shotgunDamage||0).toFixed(1)+'%'):''}
+      ${stats.pistolDamage>0?kv('Pistol Damage',(stats.pistolDamage||0).toFixed(1)+'%'):''}
+    </div>
+    <div>
+      <div class="ss-stat-section-title cyan">Defense</div>
+      ${kv('Armor',Math.round(stats.armor||0).toLocaleString(),'cyan')}
+      ${kv('Health',(stats.health||0).toFixed(1)+'%')}
+      ${kv('Armor Regen',(stats.armorRegen||0).toFixed(0)+'/s')}
+      ${kv('Incoming Repairs',(stats.incomingRepairs||0).toFixed(1)+'%')}
+      ${kv('Armor on Kill',(stats.armorOnKill||0).toFixed(1)+'%')}
+      ${kv('Explosive Res',(stats.explosiveRes||0).toFixed(1)+'%')}
+      ${kv('Hazard Prot',(stats.hazardProtection||0).toFixed(1)+'%')}
+      ${kv('Pulse Resistance',(stats.pulseResistance||0).toFixed(1)+'%')}
+    </div>
+    <div>
+      <div class="ss-stat-section-title blue">Utility</div>
+      ${kv('Skill Tier',String(Math.floor(stats.skillTier||0)),'blue')}
+      ${kv('Skill Damage',(stats.skillDamage||0).toFixed(1)+'%')}
+      ${kv('Skill Haste',(stats.skillHaste||0).toFixed(1)+'%')}
+      ${kv('Skill Duration',(stats.skillDuration||0).toFixed(1)+'%')}
+      ${kv('Skill Repair',(stats.skillRepair||0).toFixed(1)+'%')}
+      ${kv('Skill Health',(stats.skillHealth||0).toFixed(1)+'%')}
+      ${kv('Status Effects',(stats.statusEffects||0).toFixed(1)+'%')}
+      ${kv('Wpn Handling',(stats.weaponHandling||0).toFixed(1)+'%')}
+      ${kv('Reload Speed',(stats.reloadSpeed||0).toFixed(1)+'%')}
+      ${kv('Accuracy',(stats.accuracy||0).toFixed(1)+'%')}
+      ${kv('Stability',(stats.stability||0).toFixed(1)+'%')}
+    </div>
+  </div>
+</div>`;
+
+// Right: Build Profile
+const offenseRaw=(stats.weaponDamage||0)+(stats.critChance||0)+(stats.critDamage||0)+(stats.headshotDamage||0);
+const defenseRaw=Math.round((stats.armor||0)/10000)+(stats.health||0)+(stats.armorRegen||0);
+const utilityRaw=((stats.skillTier||0)*20)+(stats.skillDamage||0)+(stats.skillHaste||0);
+const maxRaw=Math.max(offenseRaw,defenseRaw,utilityRaw,1);
+const pct=v=>Math.round(v/maxRaw*100);
+const _bm={};for(const b of(stats.activeBrandBonuses||[])){const k='brand:'+b.brand;if(!_bm[k])_bm[k]={name:b.brand,type:'brand',pieces:b.pieces,bonuses:[]};if(!_bm[k].bonuses.find(x=>x.statType===b.bonus.statType))_bm[k].bonuses.push(b.bonus);}for(const b of(stats.activeSetBonuses||[])){const k='set:'+(b.set||'');if(!_bm[k])_bm[k]={name:b.set||'',type:'set',pieces:b.pieces,bonuses:[]};if(!_bm[k].bonuses.find(x=>x.statType===b.bonus.statType))_bm[k].bonuses.push(b.bonus);}const allBonuses=Object.values(_bm);
+html+=`<div class="ss-card">
+  <div style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:${btc};margin-bottom:12px;">Build Profile · ${esc(btype)}</div>
+  <div class="ss-bar-row"><div class="ss-bar-label">Offense</div><div class="ss-bar-track"><div class="ss-bar-fill" style="width:${pct(offenseRaw)}%;background:#d47814;"></div></div></div>
+  <div class="ss-bar-row"><div class="ss-bar-label">Defense</div><div class="ss-bar-track"><div class="ss-bar-fill" style="width:${pct(defenseRaw)}%;background:#148cb4;"></div></div></div>
+  <div class="ss-bar-row"><div class="ss-bar-label">Utility</div><div class="ss-bar-track"><div class="ss-bar-fill" style="width:${pct(utilityRaw)}%;background:#9b6bcc;"></div></div></div>
+  ${divider()}
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px;">
+    <div style="text-align:center;"><div style="font-size:9px;color:#8a9070;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Armor</div><div style="font-size:16px;font-weight:700;color:#d4a853;font-family:'Share Tech Mono',monospace;">${Math.round(stats.armor||0).toLocaleString()}</div></div>
+    <div style="text-align:center;"><div style="font-size:9px;color:#8a9070;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Crit</div><div style="font-size:16px;font-weight:700;color:#d4a853;font-family:'Share Tech Mono',monospace;">${(stats.critChance||0).toFixed(1)}%</div></div>
+    <div style="text-align:center;"><div style="font-size:9px;color:#8a9070;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Skill Tier</div><div style="font-size:16px;font-weight:700;color:#7aaa8e;font-family:'Share Tech Mono',monospace;">${Math.floor(stats.skillTier||0)}</div></div>
+    <div style="text-align:center;"><div style="font-size:9px;color:#8a9070;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Headshot</div><div style="font-size:16px;font-weight:700;color:#d4a853;font-family:'Share Tech Mono',monospace;">${(stats.headshotDamage||0).toFixed(1)}%</div></div>
+  </div>
+  ${divider()}
+  <div style="font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#7aaa8e;margin-bottom:8px;">Active Bonuses</div>
+  ${allBonuses.length===0?'<div style="font-size:10px;color:#8a9070;font-style:italic;">No active set bonuses</div>':allBonuses.map(b=>`<div class="ss-bonus-item ${b.type==='set'?'set':''}"><div class="ss-bonus-name">${esc(b.name||'')}</div><div class="ss-bonus-stat">${(b.bonuses||[]).map(bo=>`+${bo.value}% ${sl(bo.stat)}`).join(' · ')}</div></div>`).join('')}
+</div>`;
+html+=`</div>`;
+// -- Specialization ------------------------------------------------------------
+const actv=buildState.specialization&&buildState.specialization.active;
+html+=`<div class="ss-section">Specialization</div>`;
+if(!actv){html+=`<div class="ss-card"><div class="ss-unequipped">— None Selected —</div></div>`;}
+else{
+  const spd=SPECIALIZATIONS_DB[actv];
+  const sc=spd&&spd.color||'#a87aaa';
+  const perkTiers=buildState.specialization.perkTiers||{};
+  const pointsSpent=(spd.perks||[]).reduce((s,p)=>s+(perkTiers[p.id]||0)*p.costPerTier,0);
+  const pointsTotal=spd.totalPoints||165;
+  const uniquePerks=(spd.perks||[]).filter(p=>p.type==='unique');
+  const weaponPerks=(spd.perks||[]).filter(p=>p.type==='weapon');
+  html+=`<div class="ss-card" style="border-top-color:${sc}">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;flex-wrap:wrap;">
+      <div style="font-size:22px;font-weight:700;color:${sc};letter-spacing:0.1em;text-transform:uppercase;">${esc(actv)}</div>
+    </div>
+    ${spd.description?`<div style="font-size:10px;color:#8a9070;margin-bottom:12px;">${esc(spd.description)}</div>`:''}
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px;">
+      <div><div style="font-size:9px;color:#8a9070;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Signature Weapon</div><div style="font-size:12px;font-weight:700;color:#f2ead8;">${esc(spd.signatureWeapon||'—')}</div></div>
+      <div><div style="font-size:9px;color:#8a9070;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Unique Skill</div><div style="font-size:12px;font-weight:700;color:#7aaa8e;">${esc(spd.uniqueSkill||'—')}</div></div>
+      <div><div style="font-size:9px;color:#8a9070;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Grenade</div><div style="font-size:12px;font-weight:700;color:#ff9944;">${esc(spd.grenade||'—')}</div></div>
+    </div>
+    ${divider()}
+    <div style="margin-bottom:12px;">
+      <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;margin-bottom:4px;">
+        <div style="height:100%;width:${Math.round(pointsSpent/pointsTotal*100)}%;background:${sc};border-radius:2px;"></div>
+      </div>
+      <div style="font-size:9px;color:#8a9070;">Spec Points: ${pointsSpent} / ${pointsTotal}</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:${sc};background:rgba(37,40,48,0.60);padding:5px 10px;border-left:3px solid ${sc};margin-bottom:10px;">Unique Perks</div>
+        ${uniquePerks.map(p=>{
+          const tier=perkTiers[p.id]||0;
+          const isAct=tier>0;
+          return`<div class="ss-perk-row">
+            <div class="ss-perk-left">
+              <div class="ss-perk-name" style="color:${isAct?sc:'#8a9070'}">${esc(p.name)}</div>
+              <div class="ss-perk-desc">${esc(p.description)}</div>
+              ${isAct?`<div class="ss-perk-val" style="color:${sc}">+${Math.round(tier*p.valuePerTier)}${p.statType==='armor'?'':' %'} ${sl(p.statType)}</div>`:''}
+            </div>
+            <div class="ss-perk-right">
+              ${isAct?`<div class="ss-perk-badge" style="color:${sc};border-color:${sc};background:${sc}22">ACTIVE</div>`:`<div style="font-size:9px;color:#8a9070;opacity:0.5;">inactive</div>`}
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+      <div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#7aaa8e;background:rgba(37,40,48,0.60);padding:5px 10px;border-left:3px solid #7aaa8e;margin-bottom:10px;">Weapon Perks</div>
+        ${weaponPerks.map(p=>{
+          const tier=perkTiers[p.id]||0;
+          const isAct=tier>0;
+          const totalPips=p.tiers||3;
+          const pips=Array.from({length:totalPips},(_,pi)=>`<div class="ss-pip" style="background:${pi<tier?'#7aaa8e':'rgba(122,170,142,0.15)'}"></div>`).join('');
+          return`<div class="ss-perk-row">
+            <div class="ss-perk-left">
+              <div class="ss-perk-name" style="color:${isAct?'#7aaa8e':'#8a9070'}">${esc(p.name)}</div>
+              <div class="ss-perk-desc">${esc(p.description)}</div>
+              ${isAct?`<div class="ss-perk-val" style="color:#7aaa8e">+${Math.round(tier*p.valuePerTier)}% ${sl(p.statType)}</div>`:''}
+            </div>
+            <div class="ss-perk-right"><div class="ss-pip-row">${pips}</div></div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+  </div>`;}
+
+// -- SHD Watch -----------------------------------------------------------------
+const shdLvls=buildState.shdLevels||{};
+const shdLbls={weaponDamage:'Weapon Damage',headshotDamage:'Headshot Damage',critDamage:'Crit Damage',critChance:'Crit Chance',armor:'Armor',health:'Health',explosiveRes:'Explosive Res',hazardProtection:'Hazard Protection',skillDamage:'Skill Damage',skillHaste:'Skill Haste',skillDuration:'Skill Duration',skillRepair:'Skill Repair',accuracy:'Accuracy',stability:'Stability',reloadSpeed:'Reload Speed',magazineSizePct:'Magazine Size'};
+html+=`<div class="ss-section">SHD Watch</div>
+<div class="ss-card">
+  ${kv('Watch Level',String(buildState.shdWatchLevel||0),'accent')}
+  ${divider()}
+  <div class="ss-shd-grid">
+    ${(SHD_STAT_IDS||[]).map(k=>{
+      const pts=shdLvls[k]||0;
+      return`<div class="ss-shd-row ${pts>0?'active':''}">
+        <span class="ss-shd-label">${esc(shdLbls[k]||k)}</span>
+        <span class="ss-shd-val ${pts>0?'active':''}">${pts}/50</span>
+      </div>`;
+    }).join('')}
+  </div>
+</div>`;
+
+// -- Footer --------------------------------------------------------------------
+html+=`<div class="ss-footer">
+  <div class="ss-footer-left">
+    <div class="title">Division 2 Gear &amp; DPS Calculator</div>
+    <div class="link">github.com/ImThatTeriyaki/Tom-Clancy-The-Division-2-Gear-calculator</div>
+  </div>
+  <div class="ss-footer-right">
+    <div class="credit">Created by ImThatTeriyaki · Sleepy Inc Clan</div>
+    <div class="version">${esc(version||'v1.7.5')} · © 2026</div>
+  </div>
+</div>`;
+
+// -- Inject into page ----------------------------------------------------------
+document.getElementById('page').innerHTML=html;
+
+// Signal ready to main process
+if(window.__screenshotReady) window.__screenshotReady();
+else window.__renderComplete=true;
+</script>
+</body>
+</html>

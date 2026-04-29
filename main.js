@@ -3,6 +3,27 @@ const path = require('path');
 const https = require('https');
 const fs = require('fs');
 
+// ── Boot logger ───────────────────────────────────────────────────────────────
+const LOG_PATH = path.join(__dirname, 'boot-log.txt');
+const _logStart = new Date().toISOString();
+let _logLines = [`=== BOOT LOG ${_logStart} ===\n`];
+
+function bootLog(...args) {
+  const line = `[${new Date().toISOString()}] ${args.join(' ')}`;
+  console.log(line);
+  _logLines.push(line + '\n');
+  // Flush to disk immediately so we get it even if the process crashes
+  try { fs.writeFileSync(LOG_PATH, _logLines.join(''), 'utf8'); } catch (_) {}
+}
+
+// Catch any unhandled errors in the main process
+process.on('uncaughtException', (err) => {
+  bootLog('[MAIN CRASH]', err.stack || err.message);
+});
+process.on('unhandledRejection', (reason) => {
+  bootLog('[MAIN UNHANDLED REJECTION]', reason && reason.stack ? reason.stack : String(reason));
+});
+
 const GITHUB_RAW = 'https://raw.githubusercontent.com/ImThatTeriyaki/Tom-Clancy-The-Division-2-Gear-calculator/main';
 const GITHUB_PKG_URL  = `${GITHUB_RAW}/package.json`;
 const GITHUB_HTML_URL = `${GITHUB_RAW}/division2-gear-calculator.html`;
@@ -46,34 +67,12 @@ function saveDownloadedVersion(version) {
 }
 
 function getHtmlPath() {
+  // Always delete any cached HTML — the bundled version is always authoritative.
+  // This prevents stale cached copies from causing formula/data discrepancies.
   const updated = path.join(app.getPath('userData'), 'division2-gear-calculator.html');
-  if (!fs.existsSync(updated)) return path.join(__dirname, 'division2-gear-calculator-v2.html');
-
-  try {
-    const content = fs.readFileSync(updated, 'utf8');
-
-    // Basic sanity check — must contain the DB and DOMContentLoaded
-    if (!content.includes('DOMContentLoaded') || !content.includes('const DB =')) {
-      fs.unlinkSync(updated);
-      return path.join(__dirname, 'division2-gear-calculator-v2.html');
-    }
-
-    const match = content.match(/Gear Calculator v([\d.]+)/);
-    if (match) {
-      const downloadedVer = match[1];
-      const bundledVer = app.getVersion();
-      if (!compareVersions(bundledVer, downloadedVer)) {
-        fs.unlinkSync(updated);
-        try { fs.unlinkSync(getVersionFilePath()); } catch (_) {}
-        return path.join(__dirname, 'division2-gear-calculator-v2.html');
-      }
-    }
-  } catch (_) {
-    try { fs.unlinkSync(updated); } catch (_) {}
-    return path.join(__dirname, 'division2-gear-calculator-v2.html');
-  }
-
-  return updated;
+  try { if (fs.existsSync(updated)) fs.unlinkSync(updated); } catch (_) {}
+  try { if (fs.existsSync(getVersionFilePath())) fs.unlinkSync(getVersionFilePath()); } catch (_) {}
+  return path.join(__dirname, 'division2-gear-calculator-v2.html');
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -421,6 +420,7 @@ function getSplashFile() {
   const theme = getSavedTheme();
   if (theme === 'Liquid Glass') return 'splash-liquid-glass.html';
   if (theme === 'Aero') return 'splash-aero.html';
+  if (theme === 'Aero Nightshade') return 'splash-aero-nightshade.html';
   return 'splash.html';
 }
 
@@ -430,10 +430,11 @@ function createSplash() {
   const theme = getSavedTheme();
   const isLiquidGlass = theme === 'Liquid Glass';
   const isAero = theme === 'Aero';
+  const isNightshade = theme === 'Aero Nightshade';
   const isCozy = theme === 'Cozy';
   const splash = new BrowserWindow({
-    width: (isLiquidGlass || isAero) ? 480 : 520,
-    height: (isLiquidGlass || isAero) ? 380 : 340,
+    width: (isLiquidGlass || isAero || isNightshade) ? 480 : 520,
+    height: (isLiquidGlass || isAero || isNightshade) ? 380 : 340,
     frame: false,
     transparent: true,
     resizable: false,
@@ -441,7 +442,11 @@ function createSplash() {
     backgroundColor: '#00000000',
     webPreferences: { nodeIntegration: false, contextIsolation: true }
   });
-  splash.loadFile(isLiquidGlass ? 'splash-liquid-glass.html' : isAero ? 'splash-aero.html' : 'splash.html');
+  let splashFile = 'splash.html';
+  if (isLiquidGlass) splashFile = 'splash-liquid-glass.html';
+  else if (isAero) splashFile = 'splash-aero.html';
+  else if (isNightshade) splashFile = 'splash-aero-nightshade.html';
+  splash.loadFile(splashFile);
   return splash;
 }
 
@@ -449,6 +454,7 @@ function createWelcome() {
   const theme = getSavedTheme();
   const isLiquidGlass = theme === 'Liquid Glass';
   const isAero = theme === 'Aero';
+  const isNightshade = theme === 'Aero Nightshade';
   const isCozy = theme === 'Cozy';
   const win = new BrowserWindow({
     width: 1400, height: 900,
@@ -456,11 +462,15 @@ function createWelcome() {
     frame: false,
     title: 'Division 2 Gear Calculator',
     icon: path.join(__dirname, 'icon.png'),
-    backgroundColor: isLiquidGlass ? '#050810' : isAero ? '#b8cfd8' : isCozy ? '#1e1a16' : '#080c10',
+    backgroundColor: isLiquidGlass ? '#050810' : isAero ? '#b8cfd8' : isNightshade ? '#060a12' : isCozy ? '#1e1a16' : '#080c10',
     show: false,
     webPreferences: { nodeIntegration: false, contextIsolation: true }
   });
-  win.loadFile(isLiquidGlass ? 'welcome-liquid-glass.html' : isAero ? 'welcome-aero.html' : 'welcome.html');
+  let welcomeFile = 'welcome.html';
+  if (isLiquidGlass) welcomeFile = 'welcome-liquid-glass.html';
+  else if (isAero) welcomeFile = 'welcome-aero.html';
+  else if (isNightshade) welcomeFile = 'welcome-aero-nightshade.html';
+  win.loadFile(welcomeFile);
   return win;
 }
 
@@ -479,14 +489,17 @@ function createMain() {
     }
   });
   Menu.setApplicationMenu(null);
-  win.loadFile(getHtmlPath());
-  console.log('[MAIN] Loading HTML from:', getHtmlPath());
+  const htmlPath = getHtmlPath();
+  bootLog('[MAIN] Loading HTML from:', htmlPath);
+  win.loadFile(htmlPath);
+  console.log('[MAIN] Loading HTML from:', htmlPath);
   return win;
 }
 
 // ── App lifecycle ─────────────────────────────────────────────────────────────
 
 app.whenReady().then(() => {
+  bootLog('[MAIN] app ready, Electron', process.versions.electron, '/ Chrome', process.versions.chrome, '/ Node', process.versions.node);
   const { ipcMain } = require('electron');
 
   // Save theme pref immediately when renderer changes theme
@@ -500,32 +513,206 @@ app.whenReady().then(() => {
     } catch (_) {}
   });
 
+  // Save screenshot PNG to disk (canvas fallback)
+  ipcMain.handle('save-screenshot', async (event, { buffer, filename }) => {
+    try {
+      const { filePath, canceled } = await dialog.showSaveDialog(main, {
+        title: 'Save Build Screenshot',
+        defaultPath: path.join(app.getPath('downloads'), filename),
+        filters: [{ name: 'PNG Image', extensions: ['png'] }]
+      });
+      if (canceled || !filePath) return { success: false, canceled: true };
+      await fs.promises.writeFile(filePath, Buffer.from(buffer));
+      return { success: true, filePath };
+    } catch (err) {
+      return { success: false, error: err.message };
+    }
+  });
+
+  // Native screenshot using hidden BrowserWindow + webContents.capturePage()
+  ipcMain.handle('take-screenshot', async (event, { buildData, filename }) => {
+    let shotWin = null;
+    try {
+      // Create hidden window at 3840px (2× for crisp high-DPI output)
+      shotWin = new BrowserWindow({
+        width: 3840,
+        height: 2160,
+        show: false,
+        frame: false,
+        transparent: false,
+        backgroundColor: '#08090a',
+        webPreferences: {
+          nodeIntegration: false,
+          contextIsolation: true,
+          offscreen: false,
+          zoomFactor: 2.0,
+        }
+      });
+
+      // Load the screenshot render page
+      const screenshotPath = path.join(__dirname, 'screenshot.html');
+      await shotWin.loadFile(screenshotPath);
+
+      // Inject build data and trigger render
+      await shotWin.webContents.executeJavaScript(`
+        window.__buildData = ${JSON.stringify(buildData)};
+        true;
+      `);
+
+      // Re-execute the render script now that data is available
+      await shotWin.webContents.executeJavaScript(`
+        new Promise((resolve) => {
+          // Find and re-run the render script
+          const scripts = document.querySelectorAll('script');
+          let rendered = false;
+          for (const s of scripts) {
+            if (s.textContent && s.textContent.includes('__buildData')) {
+              try {
+                window.__screenshotReady = () => { rendered = true; resolve(); };
+                eval(s.textContent);
+                if (rendered) break;
+              } catch(e) { console.error('render error', e); }
+            }
+          }
+          // Fallback: wait 1s
+          setTimeout(resolve, 1000);
+        });
+      `);
+
+      // Wait for CSS (backdrop-filter, fonts, transitions) to settle
+      await new Promise(r => setTimeout(r, 1000));
+
+      // Set 2× zoom for high-DPI output
+      await shotWin.webContents.setZoomFactor(2.0);
+      await new Promise(r => setTimeout(r, 200));
+
+      // Get the actual content height (logical pixels)
+      const contentHeight = await shotWin.webContents.executeJavaScript(
+        'document.getElementById("page") ? document.getElementById("page").scrollHeight + 60 : 1080'
+      );
+      const finalHeight = Math.max(contentHeight, 1080);
+
+      // Resize window to fit full content at 2× (physical pixels = logical × 2)
+      shotWin.setSize(3840, Math.min(finalHeight * 2, 32000));
+      await new Promise(r => setTimeout(r, 300));
+
+      // Capture the full page
+      const image = await shotWin.webContents.capturePage({
+        x: 0, y: 0,
+        width: 3840,
+        height: Math.min(finalHeight * 2, 32000)
+      });
+
+      const pngBuffer = image.toPNG();
+
+      // Show save dialog
+      const { filePath, canceled } = await dialog.showSaveDialog(main, {
+        title: 'Save Build Screenshot',
+        defaultPath: path.join(app.getPath('downloads'), filename),
+        filters: [{ name: 'PNG Image', extensions: ['png'] }]
+      });
+
+      if (canceled || !filePath) return { success: false, canceled: true };
+      await fs.promises.writeFile(filePath, pngBuffer);
+      return { success: true, filePath };
+
+    } catch (err) {
+      console.error('[SCREENSHOT]', err);
+      return { success: false, error: err.message };
+    } finally {
+      if (shotWin && !shotWin.isDestroyed()) shotWin.destroy();
+    }
+  });
+
   const splash = createSplash();
   const main   = createMain();
 
-  // Capture renderer output immediately (before ready-to-show)
-  main.webContents.on('console-message', (event, level, message, line, sourceId) => {
-    console.log(`[RENDERER L${level}] ${message} (line ${line})`);
+  // ── Detailed renderer diagnostics ─────────────────────────────────────────
+  main.webContents.on('did-start-loading', () => bootLog('[RENDERER] did-start-loading'));
+  main.webContents.on('did-finish-load',   () => bootLog('[RENDERER] did-finish-load'));
+  main.webContents.on('dom-ready',         () => bootLog('[RENDERER] dom-ready'));
+
+  main.webContents.on('did-fail-load', (event, errorCode, errorDescription, validatedURL) => {
+    bootLog(`[LOAD FAILED] code=${errorCode} desc="${errorDescription}" url="${validatedURL}"`);
   });
-  main.webContents.on('did-fail-load', (event, errorCode, errorDescription) => {
-    console.log(`[LOAD FAILED] ${errorCode}: ${errorDescription}`);
-  });
+
   main.webContents.on('render-process-gone', (event, details) => {
-    console.log(`[RENDERER GONE] reason: ${details.reason}`);
+    bootLog(`[RENDERER GONE] reason=${details.reason} exitCode=${details.exitCode}`);
+  });
+
+  main.webContents.on('console-message', (event, level, message, line, sourceId) => {
+    const tag = level >= 3 ? '[RENDERER ERROR]' : level === 2 ? '[RENDERER WARN]' : '[RENDERER INFO]';
+
+    // Always log the raw message first
+    bootLog(`${tag} line=${line} source="${sourceId || 'unknown'}"`);
+    bootLog(`  MSG: ${message}`);
+
+    // For errors, do a deep diagnostic dump
+    if (level >= 3) {
+      try {
+        // Read the HTML file and extract context around the error line
+        const htmlPath = getHtmlPath();
+        const rawLines = fs.readFileSync(htmlPath, 'utf8').split('\n');
+        const errLine  = line - 1; // 0-indexed
+        const start    = Math.max(0, errLine - 5);
+        const end      = Math.min(rawLines.length - 1, errLine + 3);
+
+        bootLog(`  --- SOURCE CONTEXT (file lines ${start + 1}–${end + 1}) ---`);
+        for (let i = start; i <= end; i++) {
+          const marker  = i === errLine ? '>>>' : '   ';
+          const srcLine = rawLines[i];
+          // Show first 200 chars of the line
+          const preview = srcLine.length > 200 ? srcLine.substring(0, 200) + '…' : srcLine;
+          bootLog(`  ${marker} L${i + 1}: ${preview}`);
+
+          // For the error line, also dump the raw bytes of the first 40 chars
+          // so we can spot hidden/non-printable characters
+          if (i === errLine) {
+            const bytes = [];
+            for (let b = 0; b < Math.min(40, srcLine.length); b++) {
+              const code = srcLine.charCodeAt(b);
+              // Flag non-printable / non-ASCII chars
+              const flag = (code < 32 || code > 126) ? `[U+${code.toString(16).toUpperCase().padStart(4,'0')}]` : srcLine[b];
+              bytes.push(flag);
+            }
+            bootLog(`  BYTES: ${bytes.join('')}`);
+          }
+        }
+        bootLog(`  --- END CONTEXT ---`);
+
+        // Also scan the 10 lines BEFORE the error for unclosed strings/brackets
+        // by counting quote chars — a mismatch means a runaway string
+        bootLog(`  --- PRE-ERROR QUOTE SCAN (lines ${start + 1}–${errLine}) ---`);
+        let singleQ = 0, doubleQ = 0, backtick = 0;
+        for (let i = start; i < errLine; i++) {
+          const l = rawLines[i];
+          for (const ch of l) {
+            if (ch === "'")  singleQ++;
+            if (ch === '"')  doubleQ++;
+            if (ch === '`')  backtick++;
+          }
+          bootLog(`  L${i + 1}: sq=${singleQ}(${singleQ % 2 === 0 ? 'even' : 'ODD!'}) dq=${doubleQ}(${doubleQ % 2 === 0 ? 'even' : 'ODD!'}) bt=${backtick}(${backtick % 2 === 0 ? 'even' : 'ODD!'})`);
+        }
+        bootLog(`  --- END QUOTE SCAN ---`);
+
+      } catch (diagErr) {
+        bootLog(`  [DIAG FAILED] ${diagErr.message}`);
+      }
+    }
   });
 
   main.once('ready-to-show', () => {
     setTimeout(() => {
       splash.webContents.executeJavaScript(
-        'document.body.style.transition="opacity 0.6s"; document.body.style.opacity="0";'
+        'document.body.style.transition="opacity 0.3s"; document.body.style.opacity="0";'
       );
       setTimeout(() => {
         main.show();
         main.focus();
         splash.destroy();
         checkForUpdates(main);
-      }, 650);
-    }, 2500);
+      }, 350);
+    }, 0);
   });
 
   app.on('activate', () => {

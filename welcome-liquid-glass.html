@@ -43,9 +43,7 @@
     @keyframes fadeIn { to { opacity: 1; } }
 
     .badge {
-      width: 64px; height: 64px;
-      background: linear-gradient(135deg, rgba(244,162,30,0.92), rgba(192,112,16,0.92));
-      clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+      width: 72px; height: 72px;
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 32px;
       animation: badgePulse 2s ease-in-out infinite;
@@ -54,7 +52,7 @@
       0%,100% { filter: drop-shadow(0 0 10px rgba(244,162,30,0.50)); }
       50%      { filter: drop-shadow(0 0 24px rgba(244,162,30,0.85)); }
     }
-    .badge svg { width: 34px; height: 34px; fill: #050810; }
+    .badge img { width: 72px; height: 72px; object-fit: contain; }
 
     .welcome-line {
       font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase;
@@ -120,7 +118,7 @@
 
   <div class="content">
     <div class="badge">
-      <svg viewBox="0 0 24 24"><path d="M12 2L2 7v5c0 5.25 4.25 10.15 10 11.35C17.75 22.15 22 17.25 22 12V7L12 2zm0 2.18l8 4.37V12c0 4.34-3.46 8.4-8 9.56C7.46 20.4 4 16.34 4 12V8.55l8-4.37zM11 7v2H9v2h2v2H9v2h2v2h2v-2h2v-2h-2v-2h2V9h-2V7h-2z"/></svg>
+      <img src="icon.png" alt="Division 2 Gear Calculator" />
     </div>
     <div class="welcome-line">Welcome Agent</div>
     <div class="agent-label">Division 2</div>

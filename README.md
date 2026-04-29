@@ -1,4 +1,3 @@
-<img width="1024" height="1024" alt="icon" src="https://github.com/user-attachments/assets/c3138147-16b0-4786-b32c-b82bfbdd391b" />
 # Division 2 Gear & DPS Calculator v1.7.4
 
 A fully-featured, offline gear and DPS calculator for Tom Clancy's The Division 2.

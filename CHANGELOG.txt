@@ -1,6 +1,117 @@
 ================================================================================
-  DIVISION 2 GEAR CALCULATOR — CHANGELOG
+  DIVISION 2 GEAR CALCULATOR - CHANGELOG
 ================================================================================
+
+v1.8.21 - Tester Bug Fixes Round 2
+Date: May 2026
+
+  More fixes from tester feedback on top of the v1.8.13 batch.
+
+  TALENT FIXES
+  - Weakest Link (Overdogs): completely wrong description. Now correctly reads
+    "Amplifies Weapon Damage by 30% to the lowest ranking enemies in combat"
+    with the full tier hierarchy list
+  - Memento Kill Confirmed: had an extra Weapon Damage modifier that shouldn't
+    be there. Now only applies Skill Efficiency
+  - Vile Toxic Delivery: description updated to match exact in-game wording
+  - Sawyer's Rooted: was showing a "while in cover" mechanic, now correctly
+    shows "+3% WD per second not moving, stacks up to 10x"
+  - Quick Draw: stack rate corrected to every 0.3s (was 0.5s)
+  - Dragon's Glare: cooldown corrected to 35s (was 40s)
+  - NinjaBike Kneepads Parkour!: added "+25% bonus armor for 5s" to
+    description, removed incorrect Weapon Damage modifier
+  - Tinkerer Brief: removed incorrect Weapon Damage modifier
+  - Investor Slotted: added missing Armor Regen modifier
+
+  EXOTIC ITEM FIXES
+  - All exotic fixed attributes are now read-only (non-editable) as they
+    should be. Affected items: Coyote, Catharsis, Catalyst, Tinkerer,
+    Ridgeway's Pride, Collector, Beacon, Provocateur, Birdie's, Bloody
+    Knuckles, Rugged Gauntlets, Exodus, Overdogs
+  - Beacon core corrected to Weapon Damage (red) - was Skill Tier
+  - Provocateur core corrected to Armor (blue) - was Weapon Damage
+  - Shocker Punch core corrected to Armor (blue) - was Skill Tier
+  - Acosta's Kneepads now has correct fixed attributes (Hazard Protection
+    10%, Status Effects 10%)
+
+  GEAR PICKER FIX
+  - Named items that belong to a brand (like Providence Defense Named Mask)
+    were showing up in both Brand Sets and Named & Exotic groups. They now
+    only appear under Brand Sets where they belong
+
+  ACTIVE BONUSES
+  - Imminence Armaments 2pc now shows "Increased Threat" instead of the
+    raw internal stat key. Expanded the stat label map to cover all
+    brand and set bonus types properly
+
+  VILE DOT COUNTER
+  - Added a live "Vile DoT / tick" readout in the stat panel when the
+    Vile mask is equipped. Shows calculated damage per tick based on your
+    current weapon damage, explosive damage, and status effect stats
+
+  TALENT DESCRIPTIONS IN DROPDOWNS
+  - Selecting a talent in the standard UI now shows the full description
+    below the dropdown. Browsers don't show tooltips on dropdown options
+    so this was the only way to surface the info
+
+--------------------------------------------------------------------------------
+
+v1.8.13 - Tester Bug Fixes, Icon System
+Date: May 2026
+
+  EXOTIC / NAMED ITEM FIXES
+  All exotic and named gear items now correctly auto-apply their locked core
+  and talent on selection.
+
+  Core corrections:
+  - Beacon: Weapon Damage (red), was Skill Tier
+  - Provocateur: Armor (blue), was Weapon Damage
+  - Shocker Punch: Armor (blue), was Skill Tier
+
+  Fixed attributes set to non-editable:
+  - Coyote's Mask, Catharsis, Catalyst, Tinkerer, Ridgeway's Pride
+  - Collector, Beacon, Provocateur, Birdie's Quick Fix
+  - Bloody Knuckles, Rugged Gauntlets, Exodus, Overdogs
+
+  Acosta's Kneepads: added fixed attributes (Hazard Protection 10%,
+  Status Effects 10%)
+
+  TALENT FIXES
+  - Vile Toxic Delivery: removed incorrect +10% Status Effects passive
+    modifier (it's a DoT proc, not a passive buff)
+  - Investor Slotted: added missing Armor Regen modifier, name corrected
+  - Sawyer's Rooted: corrected to "+3% WD per second not moving, stacks 10x"
+  - Quick Draw: stack rate corrected to every 0.3s (was 0.5s)
+  - Dragon's Glare: cooldown corrected to 35s (was 40s)
+  - NinjaBike Kneepads Parkour!: removed incorrect Weapon Damage modifier,
+    added "+25% bonus armor for 5s" to description
+  - Tinkerer Brief: removed incorrect Weapon Damage modifier
+  - Memento Kill Confirmed: modifier corrected from Skill Damage to
+    Skill Efficiency
+  - Explosive Delivery: added full skill list to description
+
+  ICON SYSTEM
+  Replaced all SVG placeholder icons with real Division 2 PNG icons.
+  - Gear slot labels: Mask, Chest, Backpack, Gloves, Holster, Kneepads
+  - Weapon type group headers in all pickers (AR, SMG, LMG, Rifle, MMR,
+    Shotgun, Pistol)
+  - Stat panel sections: Offensive, Defensive, Utility
+  - Specializations: Gunner, Survivalist, Firewall now have icons
+  - Vile DoT row uses the Toxic Delivery PNG icon
+
+  New scripts:
+  - fix_png_logos.py: removes backgrounds from PNGs in a flat folder
+  - backup-dist.js: backs up existing EXEs to dist/backup/ before each build
+
+  TALENT DESCRIPTION DISPLAY
+  Talent dropdowns now show a description preview below the select box
+  when a talent is selected.
+
+  ACTIVE BONUSES
+  Imminence Armaments 2pc now correctly shows "Increased Threat".
+  Expanded stat label maps to cover all brand/set bonus stat types.
+
+--------------------------------------------------------------------------------
 
 v1.7.9 — Saint Theme, Icon Infrastructure & QoL Fixes
 Date: April 2026

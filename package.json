@@ -1,12 +1,13 @@
 {
   "name": "division2-gear-calculator",
-  "version": "1.7.9",
+  "version": "1.8.21",
   "description": "Division 2 Gear & DPS Calculator",
   "main": "main.js",
   "author": "ImThatTeryaki",
   "license": "MIT",
   "scripts": {
     "start": "electron .",
+    "prebuild": "node backup-dist.js",
     "build": "electron-builder --win --x64"
   },
   "build": {
@@ -53,8 +54,8 @@
       "welcome-aero-nightshade.html",
       "division2-gear-calculator-v2.html",
       "screenshot.html",
+      "build-advisor-worker.js",
       "assets/**/*",
-      "Fonts/**/*",
       "html2canvas.min.js",
       "icon.png"
     ]
